@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { CalendarDays, ChevronDown, Copy, ExternalLink, Heart, MapPin, MessageCircle, Sparkles, X } from "lucide-react";
+import { CalendarDays, ChevronDown, Copy, ExternalLink, MapPin, MessageCircle, Sparkles, X } from "lucide-react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
@@ -35,7 +35,7 @@ const postitClasses = ["bg-postit-1", "bg-postit-2", "bg-postit-3", "bg-postit-4
 const rotations = ["-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
 
 function BilingualHeading({ ko, en }: { ko: string; en: string }) {
-  return <div className="mb-8 text-center"><p className="text-xs font-semibold text-primary">✦ {en.toUpperCase()} ✦</p><h2 className="mt-2 text-2xl font-semibold">{ko}</h2></div>;
+  return <div className="mb-8 text-center"><p className="text-lg font-semibold text-primary">✦ {en.toUpperCase()} ✦</p><h2 className="mt-1 text-lg font-semibold">{ko}</h2></div>;
 }
 function StarDivider() { return <div aria-hidden="true" className="flex items-center gap-3 px-12 text-primary"><span className="h-px flex-1 bg-border"/><Sparkles className="size-4"/><span className="h-px flex-1 bg-border"/></div>; }
 
@@ -91,21 +91,18 @@ function WeddingPage() {
     </section>
 
     <section id="invitation" className="section-pad text-center soft-enter">
-      <p className="text-xs text-primary">OUR INVITATION</p>
-      <div className="my-8 flex items-center justify-center gap-4 text-2xl font-semibold"><span>강민<small className="mt-1 block text-xs font-normal text-muted-foreground">Min Kang</small></span><Heart className="size-5 fill-primary text-primary"/><span>프레데릭 랭<small className="mt-1 block text-xs font-normal text-muted-foreground">Frederik Lanng</small></span></div>
-      <p className="mx-auto max-w-sm leading-8">서로의 가장 좋은 친구로 살아온 저희 두 사람이<br/>이제 평생을 함께하려 합니다.<br/>소중한 날, 따뜻한 마음으로 함께해 주세요.</p>
-      <p className="mx-auto mt-5 max-w-sm text-sm leading-6 text-muted-foreground">After sharing life as best friends,<br/>we are choosing forever together.<br/>We would be honored to celebrate with you.</p>
+      <div className="flex items-center justify-center gap-4 text-xl font-semibold"><span>강민<small className="mt-1 block text-base font-normal text-muted-foreground">Min Kang</small></span><span aria-hidden="true" className="text-3xl font-normal text-primary">❦</span><span>프레데릭 랭<small className="mt-1 block text-base font-normal text-muted-foreground">Frederik Lanng</small></span></div>
     </section>
     <StarDivider />
 
     <section className="section-pad">
       <BilingualHeading ko="결혼식 날" en="Save the date" />
-      <div className="mb-8 text-center"><p className="text-lg font-semibold">2027년 10월 10일 일요일 · 오후 5시</p><p className="mt-1 text-sm text-muted-foreground">Sunday, October 10, 2027 · 5:00 PM</p></div>
+      <div className="mb-8 text-center"><p className="text-base font-semibold">2027년 10월 10일 일요일 · 오후 5시</p><p className="mt-1 text-base text-muted-foreground">Sunday, October 10, 2027 · 5:00 PM</p></div>
       <Calendar />
       <div className="mt-10 grid grid-cols-4 gap-2 text-center">
         {[[countdown.days,"일","DAYS"],[countdown.hours,"시간","HRS"],[countdown.minutes,"분","MIN"],[countdown.seconds,"초","SEC"]].map(([value,ko,en]) => <div key={en} className="border-y border-border py-4"><strong className="block text-2xl text-primary tabular-nums">{String(value).padStart(2,"0")}</strong><span className="text-[10px] text-muted-foreground">{ko} · {en}</span></div>)}
       </div>
-      <p className="mt-7 text-center"><span className="font-medium">Min ❤️ Frederik의 결혼식이 {countdown.days}일 남았습니다.</span><br/><span className="text-sm text-muted-foreground">{countdown.days} days until Min & Frederik’s wedding.</span></p>
+      <p className="mt-7 text-center"><span className="font-medium">Min ❦ Frederik의 결혼식이 {countdown.days}일 남았습니다.</span><br/><span className="text-base text-muted-foreground">{countdown.days} days until Min & Frederik’s wedding.</span></p>
     </section>
     <StarDivider />
 
@@ -113,20 +110,19 @@ function WeddingPage() {
       <BilingualHeading ko="오시는 길" en="How to get here" />
       <img src={mapAsset.url} alt="아트선재센터까지 오는 길 약도" className="w-full border border-border" />
       <div className="mt-7 flex gap-3">
-        <Button asChild className="h-12 flex-1"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer">카카오 맵 <ExternalLink/></a></Button>
-        <Button asChild className="h-12 flex-1"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer">구글 맵 <ExternalLink/></a></Button>
+        <Button asChild className="h-12 flex-1"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer">카카오 맵 · Kakao Map <ExternalLink/></a></Button>
+        <Button asChild className="h-12 flex-1"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer">구글 맵 · Google Maps <ExternalLink/></a></Button>
       </div>
       <div className="mt-7 flex gap-3"><MapPin className="mt-1 size-5 shrink-0 text-primary"/><p>서울 종로구 삼청로 22-7<br/><span className="text-sm text-muted-foreground">22-7 Samcheong-ro, Jongno District, Seoul</span></p></div>
-      <div className="mt-5 border-l-2 border-primary pl-4"><p className="font-medium">주차 안내</p><p className="text-sm text-muted-foreground">주차 공간이 협소하니 가급적 대중교통을 이용해 주세요.<br/>Parking is limited. Public transportation is recommended.</p></div>
     </section>
     <StarDivider />
 
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
       <div className="space-y-5">
-        <DetailCard image={rsvpAsset.url} alt="RSVP 안내 사진"><h3>참석 여부 · RSVP</h3><p>지정석으로 진행됩니다. 예식 2개월 전까지 참석 여부를 알려주세요.</p><p className="english">Assigned seating · Please RSVP at least two months in advance.</p></DetailCard>
-        <DetailCard image={scheduleAsset.url} alt="일정과 드레스코드 안내 사진"><h3>일정 & 드레스 코드<br/><span>SCHEDULE & DRESS CODE</span></h3><p>오후 5–8시 · 결혼식<br/>오후 9시– · 애프터 파티<br/>드레스/정장 · 칵테일 / 포멀</p><p className="english">5:00–8:00 PM · Wedding<br/>9:00 PM– · After Party<br/>Dress / Suit · Cocktail / Formal</p></DetailCard>
-        <DetailCard image={dinnerAsset.url} alt="저녁 식사 안내 사진"><h3>저녁 식사 · DINNER</h3><p>해산물 & 소고기<br/>식이 제한이 있으신 경우 미리 알려주세요.</p><p className="english">Seafood & Beef<br/>Please let us know of any dietary restrictions.</p></DetailCard>
+        <DetailCard image={rsvpAsset.url} alt="RSVP 안내 사진"><p>지정석으로 진행됩니다. 예식 2개월 전까지 참석 여부를 알려주세요.</p><p className="english">Assigned seating · Please RSVP at least two months in advance.</p></DetailCard>
+        <DetailCard image={scheduleAsset.url} alt="일정과 드레스코드 안내 사진"><p>오후 5–8시 · 결혼식<br/>오후 9시– · 애프터 파티<br/>드레스/정장 · 칵테일 / 포멀</p><p className="english">5:00–8:00 PM · Wedding<br/>9:00 PM– · After Party<br/>Dress / Suit · Cocktail / Formal</p></DetailCard>
+        <DetailCard image={dinnerAsset.url} alt="저녁 식사 안내 사진"><p>해산물 & 소고기<br/>식이 제한이 있으신 경우 미리 알려주세요.</p><p className="english">Seafood & Beef<br/>Please let us know of any dietary restrictions.</p></DetailCard>
       </div>
     </section>
     <StarDivider />
@@ -162,11 +158,11 @@ function Calendar() {
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   return <div aria-label="2027년 10월 달력" className="mx-auto max-w-sm">
     <div className="mb-5 flex items-center justify-center gap-3"><CalendarDays className="size-4 text-primary"/><span className="font-semibold">2027 · 10</span></div>
-    <div className="grid grid-cols-7 gap-y-2 text-center text-xs text-muted-foreground">{["일","월","화","수","목","금","토"].map(d => <span key={d}>{d}</span>)}{Array.from({length:5}).map((_,i)=><span key={`blank-${i}`}/>)}{days.map(day => <span key={day} className={`mx-auto flex size-9 items-center justify-center rounded-full ${day === 10 ? "bg-primary font-bold text-primary-foreground shadow" : "text-foreground"}`}>{day}</span>)}</div>
+    <div className="grid grid-cols-7 gap-y-2 text-center text-xs text-muted-foreground">{["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <span key={d}>{d}</span>)}{Array.from({length:5}).map((_,i)=><span key={`blank-${i}`}/>)}{days.map(day => <span key={day} className={`mx-auto flex size-9 items-center justify-center rounded-full ${day === 10 ? "bg-primary font-bold text-primary-foreground shadow" : "text-foreground"}`}>{day}</span>)}</div>
   </div>;
 }
 function DetailCard({ image, alt, children }: { image: string; alt: string; children: React.ReactNode }) {
-  return <article className="overflow-hidden rounded-md bg-paper text-paper-foreground shadow-lg"><img src={image} alt={alt} className="w-full"/><div className="p-6 text-center [&_h3]:mb-4 [&_h3]:text-lg [&_h3]:font-semibold [&_h3_span]:text-xs [&_p]:text-sm [&_p]:leading-6 [&_.english]:mt-3 [&_.english]:opacity-65">{children}</div></article>;
+  return <article className="overflow-hidden rounded-md bg-paper text-paper-foreground shadow-lg"><img src={image} alt={alt} className="w-full"/><div className="p-6 text-center [&_p]:text-base [&_p]:leading-7 [&_.english]:mt-3 [&_.english]:opacity-70">{children}</div></article>;
 }
 
 function GuestbookForm({ pending, onSubmit }: { pending: boolean; onSubmit: (data: { author: string; content: string }) => void }) {
