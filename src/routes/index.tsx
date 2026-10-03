@@ -91,7 +91,7 @@ function WeddingPage() {
     </section>
 
     <section id="invitation" className="section-pad text-center soft-enter">
-      <div className="flex items-center justify-center gap-4 text-xl font-semibold"><span>강민<small className="mt-1 block text-base font-normal text-muted-foreground">Min Kang</small></span><span aria-hidden="true" className="text-3xl font-normal text-primary">❦</span><span>프레데릭 랭<small className="mt-1 block text-base font-normal text-muted-foreground">Frederik Lanng</small></span></div>
+      <div className="flex items-center justify-center gap-3 text-lg font-semibold"><span>강민<small className="mt-1 block text-lg font-normal text-muted-foreground">Min Kang</small></span><span aria-hidden="true" className="text-3xl font-normal text-primary">❦</span><span>프레데릭 랭<small className="mt-1 block text-lg font-normal text-muted-foreground">Frederik Lanng</small></span></div>
     </section>
     <StarDivider />
 
