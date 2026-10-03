@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Public wedding forms use anonymous insert-only server functions; guestbook adds public read and Realtime, while no visitor update/delete grants exist.
