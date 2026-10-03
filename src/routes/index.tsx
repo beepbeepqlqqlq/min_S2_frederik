@@ -41,20 +41,17 @@ function VintageHeart() {
   return <span aria-hidden="true" className="inline-flex items-center gap-1 text-primary"><span className="h-px w-3 bg-primary/55"/><span className="text-[28px] leading-none">♡</span><span className="h-px w-3 bg-primary/55"/></span>;
 }
 
-function TrumpetFlower() {
-  return <svg viewBox="0 0 64 38" className="h-8 w-14 overflow-visible" aria-hidden="true">
-    <path d="M7 31c13-2 19-11 25-20M31 12c8 7 16 11 27 11" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity=".6"/>
-    <path d="M19 22c-5 1-8-1-10-5 5-1 8 1 10 5ZM42 18c1-5 4-7 9-7-1 5-4 8-9 7Z" fill="currentColor" opacity=".42"/>
+function SparkleOrnament() {
+  return <svg viewBox="0 0 64 24" className="h-6 w-14 overflow-visible" aria-hidden="true">
     <g fill="currentColor">
-      <path d="M29 14c-4-5-2-10 2-11 3 1 5 4 4 8 3-3 7-2 9 1 0 4-3 7-7 8-2 5-7 6-10 3-2-3-1-7 2-9Z"/>
-      <path d="M48 23c-2-4 0-8 3-9 3 1 4 3 3 6 3-2 6-1 7 2 0 3-3 5-6 5-2 3-5 4-8 2-1-2-1-4 1-6Z" opacity=".82"/>
+      <path d="M32 2c.7 5.2 2.8 7.3 8 8-5.2.7-7.3 2.8-8 8-.7-5.2-2.8-7.3-8-8 5.2-.7 7.3-2.8 8-8Z"/>
+      <path d="M13 8c.45 3.1 1.7 4.35 4.8 4.8-3.1.45-4.35 1.7-4.8 4.8-.45-3.1-1.7-4.35-4.8-4.8 3.1-.45 4.35-1.7 4.8-4.8Z" opacity=".75"/>
+      <path d="M51 8c.45 3.1 1.7 4.35 4.8 4.8-3.1.45-4.35 1.7-4.8 4.8-.45-3.1-1.7-4.35-4.8-4.8 3.1-.45 4.35-1.7 4.8-4.8Z" opacity=".75"/>
     </g>
-    <circle cx="34" cy="15" r="2" fill="var(--color-background)" opacity=".8"/>
-    <circle cx="53" cy="23" r="1.5" fill="var(--color-background)" opacity=".8"/>
   </svg>;
 }
 
-function StarDivider() { return <div aria-hidden="true" className="flex items-center gap-3 px-12 text-primary"><span className="h-px flex-1 bg-border"/><TrumpetFlower/><span className="h-px flex-1 bg-border"/></div>; }
+function StarDivider() { return <div aria-hidden="true" className="flex items-center gap-3 px-12 text-primary"><span className="h-px flex-1 bg-border"/><SparkleOrnament/><span className="h-px flex-1 bg-border"/></div>; }
 
 function WeddingPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -197,7 +194,7 @@ function RsvpDrawer({ open, onOpenChange, hideToday, setHideToday, pending, onSu
       <FieldLabel ko="구분" en="Guest of"><div className="grid grid-cols-2 gap-2"><Choice active={side==="min"} onClick={()=>setSide("min")}>신부측<br/><small>Min</small></Choice><Choice active={side==="frederik"} onClick={()=>setSide("frederik")}>신랑측<br/><small>Frederik</small></Choice></div></FieldLabel>
       <FieldLabel ko="참석 여부" en="Attendance"><div className="grid grid-cols-2 gap-2"><Choice active={attendance} onClick={()=>setAttendance(true)}>참석<br/><small>Joyfully Accept</small></Choice><Choice active={!attendance} onClick={()=>setAttendance(false)}>불참석<br/><small>Regretfully Decline</small></Choice></div></FieldLabel>
       <FieldLabel ko="성함" en="Name"><Input value={name} onChange={e=>setName(e.target.value)} maxLength={100} placeholder="성함 · Full name" className="border-input bg-paper"/></FieldLabel>
-      <FieldLabel ko="이메일 주소 (선택)" en="Email address (optional)"><Input value={email} onChange={e=>setEmail(e.target.value)} maxLength={254} inputMode="email" type="email" placeholder="name@example.com" className="border-input bg-paper"/></FieldLabel>
+      <FieldLabel ko="이메일 주소" en="Email address"><Input value={email} onChange={e=>setEmail(e.target.value)} maxLength={254} inputMode="email" type="email" placeholder="name@example.com" className="border-input bg-paper"/></FieldLabel>
       {attendance && <FieldLabel ko="동반인" en="Plus one"><div className="mb-2 grid grid-cols-2 gap-2"><Choice active={!plusOne} onClick={()=>{setPlusOne(false);setGuestName("");}}>N/A<br/><small>동반인 없음</small></Choice><Choice active={plusOne} onClick={()=>setPlusOne(true)}>동반인 있음<br/><small>Bringing a guest</small></Choice></div>{plusOne&&<Input value={guestName} onChange={e=>setGuestName(e.target.value)} maxLength={100} placeholder="동반인 이름 · Name of the guest" className="border-input bg-paper"/>}</FieldLabel>}
       {error&&<p className="text-xs font-medium text-primary">{error}</p>}<Button disabled={pending} className="h-12 w-full">{pending?"전달 중… Submitting…":"참석 의사 전달하기 · Submit"}</Button>
       <label className="flex cursor-pointer items-center justify-center gap-2 text-xs text-paper-foreground/65"><Checkbox checked={hideToday} onCheckedChange={v=>setHideToday(v===true)}/>오늘 하루 보지 않기 · Don’t show again today</label>
