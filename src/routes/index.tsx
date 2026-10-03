@@ -51,7 +51,7 @@ function SparkleOrnament() {
   </svg>;
 }
 
-function StarDivider() { return <div aria-hidden="true" className="flex items-center gap-3 px-12 text-primary"><span className="h-px flex-1 bg-border"/><SparkleOrnament/><span className="h-px flex-1 bg-border"/></div>; }
+function StarDivider() { return <div aria-hidden="true" className="flex items-center px-12 text-primary"><span className="h-px flex-1 bg-border"/></div>; }
 
 function WeddingPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
