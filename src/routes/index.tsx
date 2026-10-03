@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { CalendarDays, ChevronDown, Copy, ExternalLink, MapPin, MessageCircle, Sparkles, X } from "lucide-react";
+import { CalendarDays, ChevronDown, Copy, ExternalLink, MapPin, MessageCircle, X } from "lucide-react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
 import { addGuestbookMessage, listGuestbook, submitRsvp } from "@/lib/wedding.functions";
 import { supabase } from "@/integrations/supabase/client";
-import heroAsset from "@/assets/hero.png.asset.json";
+import heroAsset from "@/assets/hero-2.webp.asset.json";
 import mapAsset from "@/assets/map.png.asset.json";
 import rsvpAsset from "@/assets/RSVP.png.asset.json";
 import scheduleAsset from "@/assets/Schedule.png.asset.json";
@@ -37,7 +37,24 @@ const rotations = ["-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
 function BilingualHeading({ ko, en }: { ko: string; en: string }) {
   return <div className="mb-8 text-center"><p className="text-lg font-semibold text-primary">✦ {en.toUpperCase()} ✦</p><h2 className="mt-1 text-lg font-semibold">{ko}</h2></div>;
 }
-function StarDivider() { return <div aria-hidden="true" className="flex items-center gap-3 px-12 text-primary"><span className="h-px flex-1 bg-border"/><Sparkles className="size-4"/><span className="h-px flex-1 bg-border"/></div>; }
+function VintageHeart() {
+  return <span aria-hidden="true" className="inline-flex items-center gap-1 text-primary"><span className="h-px w-3 bg-primary/55"/><span className="text-[28px] leading-none">♡</span><span className="h-px w-3 bg-primary/55"/></span>;
+}
+
+function TrumpetFlower() {
+  return <svg viewBox="0 0 64 38" className="h-8 w-14 overflow-visible" aria-hidden="true">
+    <path d="M7 31c13-2 19-11 25-20M31 12c8 7 16 11 27 11" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity=".6"/>
+    <path d="M19 22c-5 1-8-1-10-5 5-1 8 1 10 5ZM42 18c1-5 4-7 9-7-1 5-4 8-9 7Z" fill="currentColor" opacity=".42"/>
+    <g fill="currentColor">
+      <path d="M29 14c-4-5-2-10 2-11 3 1 5 4 4 8 3-3 7-2 9 1 0 4-3 7-7 8-2 5-7 6-10 3-2-3-1-7 2-9Z"/>
+      <path d="M48 23c-2-4 0-8 3-9 3 1 4 3 3 6 3-2 6-1 7 2 0 3-3 5-6 5-2 3-5 4-8 2-1-2-1-4 1-6Z" opacity=".82"/>
+    </g>
+    <circle cx="34" cy="15" r="2" fill="var(--color-background)" opacity=".8"/>
+    <circle cx="53" cy="23" r="1.5" fill="var(--color-background)" opacity=".8"/>
+  </svg>;
+}
+
+function StarDivider() { return <div aria-hidden="true" className="flex items-center gap-3 px-12 text-primary"><span className="h-px flex-1 bg-border"/><TrumpetFlower/><span className="h-px flex-1 bg-border"/></div>; }
 
 function WeddingPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -85,13 +102,13 @@ function WeddingPage() {
   }
 
   return <main className="wedding-shell bg-background">
-    <section className="relative h-[100svh] min-h-[640px] bg-background">
-      <img src={heroAsset.url} alt="꽃이 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-contain" />
+    <section className="relative aspect-[1428/1920] w-full bg-background">
+      <img src={heroAsset.url} alt="능소화가 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-contain" />
       <a href="#invitation" aria-label="초대장으로 스크롤" className="scroll-bounce absolute bottom-6 left-1/2 -translate-x-1/2 text-primary"><ChevronDown className="size-8"/></a>
     </section>
 
     <section id="invitation" className="section-pad text-center soft-enter">
-      <div className="flex items-center justify-center gap-3 text-lg font-semibold"><span>강민<small className="mt-1 block text-lg font-normal text-muted-foreground">Min Kang</small></span><span aria-hidden="true" className="text-3xl font-normal text-primary">❦</span><span>프레데릭 랭<small className="mt-1 block text-lg font-normal text-muted-foreground">Frederik Lanng</small></span></div>
+      <div className="flex items-center justify-center gap-3 text-lg font-semibold"><span>강민<small className="mt-1 block text-lg font-normal text-muted-foreground">Min Kang</small></span><VintageHeart/><span>프레데릭 랭<small className="mt-1 block text-lg font-normal text-muted-foreground">Frederik Lanng</small></span></div>
     </section>
     <StarDivider />
 
@@ -120,8 +137,8 @@ function WeddingPage() {
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
       <div className="space-y-5">
-        <DetailCard image={rsvpAsset.url} alt="RSVP 안내 사진"><p>지정석으로 진행됩니다. 예식 2개월 전까지 참석 여부를 알려주세요.</p><p className="english">Assigned seating · Please RSVP at least two months in advance.</p></DetailCard>
-        <DetailCard image={scheduleAsset.url} alt="일정과 드레스코드 안내 사진"><p>오후 5–8시 · 결혼식<br/>오후 9시– · 애프터 파티<br/>드레스/정장 · 칵테일 / 포멀</p><p className="english">5:00–8:00 PM · Wedding<br/>9:00 PM– · After Party<br/>Dress / Suit · Cocktail / Formal</p></DetailCard>
+        <DetailCard image={rsvpAsset.url} alt="RSVP 안내 사진"><p className="details-copy">지정석으로 진행됩니다.<br/>예식 2개월 전까지 참석 여부를 알려주세요.</p><p className="english details-copy">Assigned seating.<br/>Please RSVP at least two months in advance.</p></DetailCard>
+        <DetailCard image={scheduleAsset.url} alt="일정과 드레스코드 안내 사진"><p>오후 5–8시 · 결혼식<br/>오후 9시– · 애프터 파티<br/>드레스/정장</p><p className="english">5:00–8:00 PM · Wedding<br/>9:00 PM– · After Party<br/>Cocktail / Formal</p></DetailCard>
         <DetailCard image={dinnerAsset.url} alt="저녁 식사 안내 사진"><p>해산물 & 소고기<br/>식이 제한이 있으신 경우 미리 알려주세요.</p><p className="english">Seafood & Beef<br/>Please let us know of any dietary restrictions.</p></DetailCard>
       </div>
     </section>
@@ -171,16 +188,16 @@ function GuestbookForm({ pending, onSubmit }: { pending: boolean; onSubmit: (dat
   return <form onSubmit={submit} className="space-y-3"><Input value={author} onChange={e=>setAuthor(e.target.value)} maxLength={60} placeholder="이름 · Name" aria-label="이름 Name"/><Textarea value={content} onChange={e=>setContent(e.target.value)} maxLength={500} placeholder="축하 메시지를 남겨주세요 · Leave a message" aria-label="축하 메시지 Message" className="min-h-28"/>{error && <p className="text-xs text-primary">{error}</p>}<Button disabled={pending} className="w-full">{pending ? "저장 중… Saving…" : "메시지 남기기 · Post message"}</Button></form>;
 }
 
-type RsvpData = { name: string; phone: string; attendance: boolean; guestCount: number; guestName: string | null; guestSide: "min" | "frederik" };
+type RsvpData = { name: string; email: string | null; attendance: boolean; guestCount: number; guestName: string | null; guestSide: "min" | "frederik" };
 function RsvpDrawer({ open, onOpenChange, hideToday, setHideToday, pending, onSubmit }: { open: boolean; onOpenChange: (open:boolean)=>void; hideToday:boolean; setHideToday:(v:boolean)=>void; pending:boolean; onSubmit:(data:RsvpData)=>void }) {
-  const [side,setSide]=useState<"min"|"frederik">("min"); const [attendance,setAttendance]=useState(true); const [name,setName]=useState(""); const [phone,setPhone]=useState(""); const [plusOne,setPlusOne]=useState(false); const [guestName,setGuestName]=useState(""); const [error,setError]=useState("");
-  function submit(e:FormEvent){ e.preventDefault(); if(!name.trim()||phone.trim().length<7){setError("성함과 연락처를 확인해주세요. Please check your name and phone.");return;} if(plusOne&&!guestName.trim()){setError("동반인 이름을 입력하거나 N/A를 눌러주세요. Add a guest name or choose N/A.");return;} setError(""); onSubmit({name:name.trim(),phone:phone.trim(),attendance,guestCount:plusOne?1:0,guestName:plusOne?guestName.trim():null,guestSide:side}); }
+  const [side,setSide]=useState<"min"|"frederik">("min"); const [attendance,setAttendance]=useState(true); const [name,setName]=useState(""); const [email,setEmail]=useState(""); const [plusOne,setPlusOne]=useState(false); const [guestName,setGuestName]=useState(""); const [error,setError]=useState("");
+  function submit(e:FormEvent){ e.preventDefault(); if(!name.trim()){setError("성함을 입력해주세요. Please enter your name.");return;} if(email.trim()&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())){setError("이메일 주소를 확인해주세요. Please check your email address.");return;} if(plusOne&&!guestName.trim()){setError("동반인 이름을 입력하거나 N/A를 눌러주세요. Add a guest name or choose N/A.");return;} setError(""); onSubmit({name:name.trim(),email:email.trim()||null,attendance,guestCount:plusOne?1:0,guestName:plusOne?guestName.trim():null,guestSide:side}); }
   return <Drawer open={open} onOpenChange={onOpenChange} shouldScaleBackground={false}><DrawerContent className="left-1/2 max-h-[92vh] w-full max-w-[480px] -translate-x-1/2 border-border bg-paper text-paper-foreground"><div className="overflow-y-auto px-6 pb-8"><DrawerHeader className="relative px-0 pt-3 text-left"><DrawerClose asChild><Button variant="ghost" size="icon" className="absolute right-0 top-0 text-primary" aria-label="닫기"><X/></Button></DrawerClose><DrawerTitle className="text-2xl">참석 여부 · RSVP</DrawerTitle><DrawerDescription>예식 준비를 위해 아래 내용을 알려주세요.<br/>Please share your attendance details.</DrawerDescription></DrawerHeader>
     <form onSubmit={submit} className="mt-5 space-y-5">
-      <FieldLabel ko="구분" en="Guest of"><div className="grid grid-cols-2 gap-2"><Choice active={side==="min"} onClick={()=>setSide("min")}>신부측<br/><small>Min's Guests</small></Choice><Choice active={side==="frederik"} onClick={()=>setSide("frederik")}>신랑측<br/><small>Frederik's Guests</small></Choice></div></FieldLabel>
+      <FieldLabel ko="구분" en="Guest of"><div className="grid grid-cols-2 gap-2"><Choice active={side==="min"} onClick={()=>setSide("min")}>신부측<br/><small>Min</small></Choice><Choice active={side==="frederik"} onClick={()=>setSide("frederik")}>신랑측<br/><small>Frederik</small></Choice></div></FieldLabel>
       <FieldLabel ko="참석 여부" en="Attendance"><div className="grid grid-cols-2 gap-2"><Choice active={attendance} onClick={()=>setAttendance(true)}>참석<br/><small>Joyfully Accept</small></Choice><Choice active={!attendance} onClick={()=>setAttendance(false)}>불참석<br/><small>Regretfully Decline</small></Choice></div></FieldLabel>
       <FieldLabel ko="성함" en="Name"><Input value={name} onChange={e=>setName(e.target.value)} maxLength={100} placeholder="성함 · Full name" className="border-input bg-paper"/></FieldLabel>
-      <FieldLabel ko="연락처" en="Phone"><Input value={phone} onChange={e=>setPhone(e.target.value)} maxLength={30} inputMode="tel" placeholder="010-0000-0000" className="border-input bg-paper"/></FieldLabel>
+      <FieldLabel ko="이메일 주소 (선택)" en="Email address (optional)"><Input value={email} onChange={e=>setEmail(e.target.value)} maxLength={254} inputMode="email" type="email" placeholder="name@example.com" className="border-input bg-paper"/></FieldLabel>
       {attendance && <FieldLabel ko="동반인" en="Plus one"><div className="mb-2 grid grid-cols-2 gap-2"><Choice active={!plusOne} onClick={()=>{setPlusOne(false);setGuestName("");}}>N/A<br/><small>동반인 없음</small></Choice><Choice active={plusOne} onClick={()=>setPlusOne(true)}>동반인 있음<br/><small>Bringing a guest</small></Choice></div>{plusOne&&<Input value={guestName} onChange={e=>setGuestName(e.target.value)} maxLength={100} placeholder="동반인 이름 · Name of the guest" className="border-input bg-paper"/>}</FieldLabel>}
       {error&&<p className="text-xs font-medium text-primary">{error}</p>}<Button disabled={pending} className="h-12 w-full">{pending?"전달 중… Submitting…":"참석 의사 전달하기 · Submit"}</Button>
       <label className="flex cursor-pointer items-center justify-center gap-2 text-xs text-paper-foreground/65"><Checkbox checked={hideToday} onCheckedChange={v=>setHideToday(v===true)}/>오늘 하루 보지 않기 · Don’t show again today</label>

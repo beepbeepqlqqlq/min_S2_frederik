@@ -84,6 +84,8 @@
 @utility soft-enter { animation: soft-in .65s ease-out both; }
 @utility scroll-bounce { animation: gentle-bounce 1.6s ease-in-out infinite; }
 
+.details-copy { font-size: 0.925rem; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .soft-enter, .scroll-bounce { animation: none; }

@@ -5,7 +5,7 @@ import type { Database } from "@/integrations/supabase/types";
 
 const rsvpSchema = z.object({
   name: z.string().trim().min(1).max(100),
-  phone: z.string().trim().min(7).max(30).regex(/^[0-9+()\-\s]+$/),
+  email: z.string().trim().email().max(254).nullable(),
   attendance: z.boolean(),
   guestCount: z.number().int().min(0).max(1),
   guestName: z.string().trim().max(100).nullable(),
@@ -40,7 +40,8 @@ export const submitRsvp = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { error } = await publicClient().from("rsvp_submissions").insert({
       name: data.name,
-      phone: data.phone,
+      phone: "not-provided",
+      email: data.email,
       attendance: data.attendance,
       guest_count: data.guestCount,
       guest_name: data.guestCount === 1 ? data.guestName : null,

@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Public wedding forms use anonymous insert-only server functions; guestbook adds public read and Realtime, while no visitor update/delete grants exist.
+- RSVP contact details use the optional email column; the deprecated required phone column receives an internal compatibility sentinel until it can be retired safely.
