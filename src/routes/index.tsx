@@ -102,8 +102,8 @@ function WeddingPage() {
   }
 
   return <main className="wedding-shell bg-background">
-    <section className="relative h-[100svh] min-h-[640px] bg-background">
-      <img src={heroAsset.url} alt="능소화가 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-cover" />
+    <section className="relative aspect-[1428/1920] w-full bg-background">
+      <img src={heroAsset.url} alt="능소화가 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-contain" />
       <a href="#invitation" aria-label="초대장으로 스크롤" className="scroll-bounce absolute bottom-6 left-1/2 -translate-x-1/2 text-primary"><ChevronDown className="size-8"/></a>
     </section>
 
