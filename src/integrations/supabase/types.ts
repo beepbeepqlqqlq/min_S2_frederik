@@ -42,6 +42,7 @@ export type Database = {
         Row: {
           attendance: boolean
           created_at: string
+          email: string | null
           guest_count: number
           guest_name: string | null
           guest_side: string
@@ -52,6 +53,7 @@ export type Database = {
         Insert: {
           attendance: boolean
           created_at?: string
+          email?: string | null
           guest_count?: number
           guest_name?: string | null
           guest_side: string
@@ -62,6 +64,7 @@ export type Database = {
         Update: {
           attendance?: boolean
           created_at?: string
+          email?: string | null
           guest_count?: number
           guest_name?: string | null
           guest_side?: string
