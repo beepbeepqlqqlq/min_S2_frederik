@@ -42,7 +42,7 @@ function StarDivider() { return <div aria-hidden="true" className="flex items-ce
 function WeddingPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hideToday, setHideToday] = useState(false);
-  const [now, setNow] = useState(Date.now());
+  const [now, setNow] = useState(TARGET);
   const queryClient = useQueryClient();
   const fetchMessages = useServerFn(listGuestbook);
   const createMessage = useServerFn(addGuestbookMessage);
@@ -71,7 +71,7 @@ function WeddingPage() {
   }, [now]);
 
   const rsvpMutation = useMutation({ mutationFn: saveRsvp, onSuccess: () => { toast.success("참석 의사가 전달되었습니다. RSVP received."); setDrawerOpen(false); }, onError: () => toast.error("전송하지 못했습니다. Please try again.") });
-  const messageMutation = useMutation({ mutationFn: createMessage, onSuccess: () => { queryClient.invalidateQueries({ queryKey: ["guestbook"] }); toast.success("메시지가 남겨졌습니다. Message posted."); }, onError: () => toast.error("메시지를 저장하지 못했습니다. Please try again.") });
+  const messageMutation = useMutation({ mutationFn: createMessage, onSuccess: (row) => { queryClient.setQueryData(["guestbook"], (current: Awaited<ReturnType<typeof fetchMessages>> | undefined) => current?.some((item) => item.id === row.id) ? current : [row, ...(current ?? [])]); toast.success("메시지가 남겨졌습니다. Message posted."); }, onError: () => toast.error("메시지를 저장하지 못했습니다. Please try again.") });
 
   function closeDrawer() {
     if (hideToday) window.localStorage.setItem("wedding-rsvp-hidden", new Date().toISOString().slice(0, 10));
@@ -85,8 +85,8 @@ function WeddingPage() {
   }
 
   return <main className="wedding-shell bg-background">
-    <section className="relative h-[100svh] min-h-[640px] bg-secondary">
-      <img src={heroAsset.url} alt="꽃이 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-cover" />
+    <section className="relative h-[100svh] min-h-[640px] bg-background">
+      <img src={heroAsset.url} alt="꽃이 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-contain" />
       <a href="#invitation" aria-label="초대장으로 스크롤" className="scroll-bounce absolute bottom-6 left-1/2 -translate-x-1/2 text-primary"><ChevronDown className="size-8"/></a>
     </section>
 
