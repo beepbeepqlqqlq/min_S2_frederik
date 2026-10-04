@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { CalendarDays, ChevronDown, Copy, MapPin, MessageCircle, X } from "lucide-react";
+import { CalendarDays, Copy, MapPin, MessageCircle, X } from "lucide-react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
@@ -101,7 +101,6 @@ function WeddingPage() {
   return <main className="wedding-shell bg-background">
     <section className="relative aspect-[1428/1920] w-full bg-background">
       <img src={heroAsset.url} alt="능소화가 핀 담장 앞에서 함께 웃는 Min과 Frederik" className="h-full w-full object-contain" />
-      <a href="#invitation" aria-label="초대장으로 스크롤" className="scroll-bounce absolute bottom-6 left-1/2 -translate-x-1/2 text-primary"><ChevronDown className="size-8"/></a>
     </section>
 
     <section id="invitation" className="section-pad text-center soft-enter">
