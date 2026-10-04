@@ -105,7 +105,7 @@ function WeddingPage() {
     </section>
 
     <section id="invitation" className="section-pad text-center soft-enter">
-      <div className="flex items-center justify-center gap-3 text-lg font-semibold"><span>강민<small className="mt-1 block text-lg font-normal text-muted-foreground">Min Kang</small></span><VintageHeart/><span>프레데릭 랭<small className="mt-1 block text-lg font-normal text-muted-foreground">Frederik Lanng</small></span></div>
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-lg font-semibold"><span>강민<small className="mt-1 block text-lg font-normal text-muted-foreground">Min Kang</small></span><VintageHeart/><span>프레데릭 랭<small className="mt-1 block text-lg font-normal text-muted-foreground">Frederik Lanng</small></span></div>
     </section>
     <StarDivider />
 
@@ -124,8 +124,8 @@ function WeddingPage() {
       <BilingualHeading ko="오시는 길" en="How to get here" />
       <img src={mapAsset.url} alt="아트선재센터까지 오는 길 약도" className="w-full border border-border" />
       <div className="mt-7 flex gap-3">
-        <Button asChild className="h-12 flex-1"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer">카카오 맵 · Kakao Map <ExternalLink/></a></Button>
-        <Button asChild className="h-12 flex-1"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer">구글 맵 · Google Maps <ExternalLink/></a></Button>
+        <Button asChild className="h-16 flex-1 leading-tight"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer"><span className="block">카카오 맵</span><span className="block text-xs opacity-75">Kakao Map</span></a></Button>
+        <Button asChild className="h-16 flex-1 leading-tight"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer"><span className="block">구글 맵</span><span className="block text-xs opacity-75">Google Maps</span></a></Button>
       </div>
       <div className="mt-7 flex gap-3"><MapPin className="mt-1 size-5 shrink-0 text-primary"/><p>서울 종로구 삼청로 22-7<br/><span className="text-sm text-muted-foreground">22-7 Samcheong-ro, Jongno District, Seoul</span></p></div>
     </section>
@@ -143,7 +143,7 @@ function WeddingPage() {
 
     <section className="section-pad text-center">
       <BilingualHeading ko="참석 여부" en="RSVP" />
-      <p className="mb-6 text-sm leading-6 text-muted-foreground">자리를 정성껏 준비할 수 있도록 참석 여부를 알려주세요.<br/>Please let us know if you can join us.</p>
+      <p className="mb-6 text-sm leading-6 text-muted-foreground">자리를 준비할 수 있도록 참석 여부를 알려주세요.<br/>Please let us know if you can join us.</p>
       <Button size="lg" className="h-13 w-full" onClick={() => setDrawerOpen(true)}>참석 의사 전달하기 <span className="opacity-80">RSVP</span></Button>
     </section>
     <StarDivider />
