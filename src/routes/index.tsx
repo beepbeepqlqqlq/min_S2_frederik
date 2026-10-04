@@ -124,8 +124,8 @@ function WeddingPage() {
       <BilingualHeading ko="오시는 길" en="How to get here" />
       <img src={mapAsset.url} alt="아트선재센터까지 오는 길 약도" className="w-full border border-border" />
       <div className="mt-7 flex gap-3">
-        <Button asChild className="h-16 flex-1 leading-tight"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer"><span className="block">카카오 맵</span><span className="block text-xs opacity-75">Kakao Map</span></a></Button>
-        <Button asChild className="h-16 flex-1 leading-tight"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer"><span className="block">구글 맵</span><span className="block text-xs opacity-75">Google Maps</span></a></Button>
+        <Button asChild className="h-16 flex-1"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer"><span className="flex flex-col items-center leading-tight"><span>카카오 맵</span><span className="text-xs opacity-75">Kakao Map</span></span></a></Button>
+        <Button asChild className="h-16 flex-1"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer"><span className="flex flex-col items-center leading-tight"><span>구글 맵</span><span className="text-xs opacity-75">Google Maps</span></span></a></Button>
       </div>
       <div className="mt-7 flex gap-3"><MapPin className="mt-1 size-5 shrink-0 text-primary"/><p>서울 종로구 삼청로 22-7<br/><span className="text-sm text-muted-foreground">22-7 Samcheong-ro, Jongno District, Seoul</span></p></div>
     </section>
