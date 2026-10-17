@@ -129,10 +129,12 @@ function WeddingPage() {
 
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
-      <div className="space-y-16 text-center">
-        <DetailBlock title={["PLEASE RSVP"]} ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
-        <DetailBlock title={["SCHEDULE &","DRESS CODE"]} ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티","드레스/정장"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party","Cocktail / Formal"]} />
-        <DetailBlock title={["DINNER"]} ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
+      <div className="text-center">
+        <DetailBlock title="PLEASE RSVP" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
+        <MiniDivider />
+        <DetailBlock title="SCHEDULE & DRESS CODE" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티","드레스/정장"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party","Cocktail / Formal"]} />
+        <MiniDivider />
+        <DetailBlock title="DINNER" ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
       </div>
     </section>
     <StarDivider />
