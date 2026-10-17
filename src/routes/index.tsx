@@ -172,8 +172,11 @@ function Calendar() {
     <div className="grid grid-cols-7 gap-y-2 text-center text-xs text-muted-foreground">{["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <span key={d}>{d}</span>)}{Array.from({length:5}).map((_,i)=><span key={`blank-${i}`}/>)}{days.map(day => <span key={day} className={`mx-auto flex size-9 items-center justify-center rounded-full ${day === 10 ? "bg-primary font-bold text-primary-foreground shadow" : "text-foreground"}`}>{day}</span>)}</div>
   </div>;
 }
-function DetailBlock({ title, ko, en }: { title: string[]; ko: string[]; en: string[] }) {
-  return <article className="space-y-5"><h3 className="text-[26px] font-bold uppercase leading-tight tracking-[0.12em] text-primary">{title.map(line => <span key={line} className="block">{line}</span>)}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
+function DetailBlock({ title, ko, en }: { title: string; ko: string[]; en: string[] }) {
+  return <article className="space-y-4"><h3 className="whitespace-nowrap text-lg font-semibold uppercase leading-tight tracking-[0.1em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
+}
+function MiniDivider() {
+  return <div aria-hidden="true" className="my-12 flex items-center justify-center gap-3 text-primary"><span className="h-px w-10 bg-border"/><span className="text-sm leading-none">♡</span><span className="h-px w-10 bg-border"/></div>;
 }
 
 function GuestbookForm({ pending, onSubmit }: { pending: boolean; onSubmit: (data: { author: string; content: string }) => void }) {
