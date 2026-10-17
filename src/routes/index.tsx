@@ -14,9 +14,6 @@ import { addGuestbookMessage, listGuestbook, submitRsvp } from "@/lib/wedding.fu
 import { supabase } from "@/integrations/supabase/client";
 import heroAsset from "@/assets/hero-2.webp.asset.json";
 import mapAsset from "@/assets/map.png.asset.json";
-import rsvpAsset from "@/assets/RSVP.png.asset.json";
-import scheduleAsset from "@/assets/Schedule.png.asset.json";
-import dinnerAsset from "@/assets/Dinner.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -132,10 +129,10 @@ function WeddingPage() {
 
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
-      <div className="space-y-5">
-        <DetailCard image={rsvpAsset.url} alt="RSVP 안내 사진"><p className="details-copy">지정석으로 진행됩니다.<br/>예식 2개월 전까지 참석 여부를 알려주세요.</p><p className="english details-copy">Assigned seating.<br/>Please RSVP at least two months in advance.</p></DetailCard>
-        <DetailCard image={scheduleAsset.url} alt="일정과 드레스코드 안내 사진"><p>오후 5–8시 · 결혼식<br/>오후 9시– · 애프터 파티<br/>드레스/정장</p><p className="english">5:00–8:00 PM · Wedding<br/>9:00 PM– · After Party<br/>Cocktail / Formal</p></DetailCard>
-        <DetailCard image={dinnerAsset.url} alt="저녁 식사 안내 사진"><p>해산물 & 소고기<br/>식이 제한이 있으신 경우 미리 알려주세요.</p><p className="english">Seafood & Beef<br/>Please let us know of any dietary restrictions.</p></DetailCard>
+      <div className="space-y-16 text-center">
+        <DetailBlock title="PLEASE RSVP" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
+        <DetailBlock title="SCHEDULE & DRESS CODE" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티","드레스/정장"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party","Cocktail / Formal"]} />
+        <DetailBlock title="DINNER" ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
       </div>
     </section>
     <StarDivider />
@@ -174,8 +171,8 @@ function Calendar() {
     <div className="grid grid-cols-7 gap-y-2 text-center text-xs text-muted-foreground">{["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <span key={d}>{d}</span>)}{Array.from({length:5}).map((_,i)=><span key={`blank-${i}`}/>)}{days.map(day => <span key={day} className={`mx-auto flex size-9 items-center justify-center rounded-full ${day === 10 ? "bg-primary font-bold text-primary-foreground shadow" : "text-foreground"}`}>{day}</span>)}</div>
   </div>;
 }
-function DetailCard({ image, alt, children }: { image: string; alt: string; children: React.ReactNode }) {
-  return <article className="overflow-hidden rounded-md bg-paper text-paper-foreground shadow-lg"><img src={image} alt={alt} className="w-full"/><div className="p-6 text-center [&_p]:text-base [&_p]:leading-7 [&_.english]:mt-3 [&_.english]:opacity-70">{children}</div></article>;
+function DetailBlock({ title, ko, en }: { title: string; ko: string[]; en: string[] }) {
+  return <article className="space-y-5"><h3 className="text-[26px] font-bold uppercase leading-tight tracking-[0.12em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
 }
 
 function GuestbookForm({ pending, onSubmit }: { pending: boolean; onSubmit: (data: { author: string; content: string }) => void }) {
