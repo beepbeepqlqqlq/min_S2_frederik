@@ -130,9 +130,9 @@ function WeddingPage() {
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
       <div className="space-y-16 text-center">
-        <DetailBlock title="PLEASE RSVP" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
-        <DetailBlock title="SCHEDULE & DRESS CODE" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티","드레스/정장"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party","Cocktail / Formal"]} />
-        <DetailBlock title="DINNER" ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
+        <DetailBlock title={["PLEASE RSVP"]} ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
+        <DetailBlock title={["SCHEDULE &","DRESS CODE"]} ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티","드레스/정장"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party","Cocktail / Formal"]} />
+        <DetailBlock title={["DINNER"]} ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
       </div>
     </section>
     <StarDivider />
@@ -147,10 +147,9 @@ function WeddingPage() {
     <section className="section-pad">
       <BilingualHeading ko="축하 메시지" en="Guestbook" />
       <GuestbookForm pending={messageMutation.isPending} onSubmit={(data) => messageMutation.mutate({ data })}/>
-      <div className="mt-10 columns-2 gap-3 space-y-3">
-        {messages.data?.map((message, i) => <article key={message.id} className={`mb-3 break-inside-avoid p-4 text-paper-foreground shadow-sm ${postitClasses[message.color_index] ?? postitClasses[0]} ${rotations[i % rotations.length]}`}><p className="whitespace-pre-wrap text-sm leading-6">{message.content}</p><p className="mt-4 text-xs font-semibold">— {message.author}</p></article>)}
-        {!messages.isLoading && !messages.data?.length && <p className="col-span-2 text-center text-sm text-muted-foreground">첫 축하 메시지를 남겨주세요.<br/>Be the first to leave a message.</p>}
-      </div>
+      {messages.isLoading ? null : messages.data?.length ? <div className="mt-10 columns-2 gap-3 space-y-3">
+        {messages.data.map((message, i) => <article key={message.id} className={`mb-3 break-inside-avoid p-4 text-paper-foreground shadow-sm ${postitClasses[message.color_index] ?? postitClasses[0]} ${rotations[i % rotations.length]}`}><p className="whitespace-pre-wrap text-sm leading-6">{message.content}</p><p className="mt-4 text-xs font-semibold">— {message.author}</p></article>)}
+      </div> : <p className="mt-10 text-center text-sm leading-6 text-muted-foreground">첫 축하 메시지를 남겨주세요.<br/>Be the first to leave a message.</p>}
     </section>
 
     <footer className="border-t border-border px-6 py-12 text-center">
@@ -171,8 +170,8 @@ function Calendar() {
     <div className="grid grid-cols-7 gap-y-2 text-center text-xs text-muted-foreground">{["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <span key={d}>{d}</span>)}{Array.from({length:5}).map((_,i)=><span key={`blank-${i}`}/>)}{days.map(day => <span key={day} className={`mx-auto flex size-9 items-center justify-center rounded-full ${day === 10 ? "bg-primary font-bold text-primary-foreground shadow" : "text-foreground"}`}>{day}</span>)}</div>
   </div>;
 }
-function DetailBlock({ title, ko, en }: { title: string; ko: string[]; en: string[] }) {
-  return <article className="space-y-5"><h3 className="text-[26px] font-bold uppercase leading-tight tracking-[0.12em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
+function DetailBlock({ title, ko, en }: { title: string[]; ko: string[]; en: string[] }) {
+  return <article className="space-y-5"><h3 className="text-[26px] font-bold uppercase leading-tight tracking-[0.12em] text-primary">{title.map(line => <span key={line} className="block">{line}</span>)}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
 }
 
 function GuestbookForm({ pending, onSubmit }: { pending: boolean; onSubmit: (data: { author: string; content: string }) => void }) {
