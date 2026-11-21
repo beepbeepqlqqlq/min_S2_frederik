@@ -207,4 +207,4 @@ function RsvpDrawer({ open, onOpenChange, hideToday, setHideToday, pending, onSu
     </form></div></DrawerContent></Drawer>;
 }
 function FieldLabel({ko,en,children}:{ko:string;en:string;children:React.ReactNode}){return <div><p className="mb-2 text-sm font-semibold">{ko} <span className="font-normal opacity-55">{en}</span></p>{children}</div>}
-function Choice({active,onClick,children}:{active:boolean;onClick:()=>void;children:React.ReactNode}){return <Button type="button" variant={active?"default":"outline"} className="h-14 whitespace-normal leading-4" onClick={onClick}>{children}</Button>}
+function Choice({active,onClick,children}:{active:boolean;onClick:()=>void;children:React.ReactNode}){return <Button type="button" variant={active?"default":"outline"} className="h-14 whitespace-normal leading-4 text-primary-foreground" onClick={onClick}>{children}</Button>}
