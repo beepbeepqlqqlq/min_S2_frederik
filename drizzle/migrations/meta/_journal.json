@@ -15,6 +15,13 @@
       "when": 1791038354416,
       "tag": "0001_add_optional_rsvp_email",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795261311672,
+      "tag": "0002_restrict_rsvp_insert_policy",
+      "breakpoints": true
     }
   ]
 }
