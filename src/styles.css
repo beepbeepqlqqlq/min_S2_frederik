@@ -3,8 +3,8 @@
 @import "tw-animate-css";
 
 @font-face {
-  font-family: "Wedding Han";
-  src: url("/__l5e/assets-v1/04951aab-8e5f-4106-8a79-b3b5f5e94d3f/wedding-font.ttf") format("truetype");
+  font-family: "Hangyeore Gyeol";
+  src: url("/__l5e/assets-v1/9a798adc-d702-471a-9e19-5ba4d2591afe/hangyeore-gyeol.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -39,7 +39,7 @@
   --color-postit-4: var(--postit-4);
   --color-postit-5: var(--postit-5);
   --color-postit-6: var(--postit-6);
-  --font-sans: "Wedding Han", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans: "Hangyeore Gyeol", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 :root {

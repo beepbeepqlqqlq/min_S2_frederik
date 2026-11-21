@@ -124,10 +124,10 @@ function WeddingPage() {
       <BilingualHeading ko="오시는 길" en="How to get here" />
       <img src={mapAsset.url} alt="아트선재센터까지 오는 길 약도" className="w-full border border-border" />
       <div className="mt-7 flex gap-3">
-        <Button asChild className="h-16 flex-1"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer"><span className="flex flex-col items-center leading-tight"><span>카카오 맵</span><span className="text-xs opacity-75">Kakao Map</span></span></a></Button>
-        <Button asChild className="h-16 flex-1"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer"><span className="flex flex-col items-center leading-tight"><span>구글 맵</span><span className="text-xs opacity-75">Google Maps</span></span></a></Button>
+        <Button asChild className="h-16 flex-1"><a href="https://kko.to/x4Wa2tk9Ff" target="_blank" rel="noreferrer"><span className="flex flex-col items-center leading-tight"><span>카카오 맵</span><span className="text-sm opacity-75">Kakao Map</span></span></a></Button>
+        <Button asChild className="h-16 flex-1"><a href="https://maps.app.goo.gl/oJ8YhbjoMeEfbXGz9" target="_blank" rel="noreferrer"><span className="flex flex-col items-center leading-tight"><span>구글 맵</span><span className="text-sm opacity-75">Google Maps</span></span></a></Button>
       </div>
-      <div className="mt-7 flex gap-3"><MapPin className="mt-1 size-5 shrink-0 text-primary"/><p>서울 종로구 삼청로 22-7<br/><span className="text-sm text-muted-foreground">22-7 Samcheong-ro, Jongno District, Seoul</span></p></div>
+      <div className="mt-7 flex gap-3"><MapPin className="mt-1 size-5 shrink-0 text-primary"/><p>서울 종로구 삼청로 22-7<br/><span className="text-base text-muted-foreground">22-7 Samcheong-ro, Jongno District, Seoul</span></p></div>
     </section>
     <StarDivider />
 
@@ -179,7 +179,7 @@ function Calendar() {
   </div>;
 }
 function DetailBlock({ title, image, imageAlt, imageClassName = "mb-7 w-full", ko, en }: { title: string; image: string; imageAlt: string; imageClassName?: string; ko: string[]; en: string[] }) {
-  return <article className="space-y-4"><img src={image} alt={imageAlt} loading="lazy" decoding="async" className={imageClassName}/><h3 className="whitespace-nowrap text-lg font-semibold uppercase leading-tight tracking-[0.1em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
+  return <article className="space-y-4"><img src={image} alt={imageAlt} loading="lazy" decoding="async" className={imageClassName}/><h3 className="whitespace-nowrap text-lg font-semibold uppercase leading-tight tracking-[0.1em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-base leading-7 text-muted-foreground">{en.join("\n")}</p></article>;
 }
 function MiniDivider() {
   return <div aria-hidden="true" className="my-12 flex items-center justify-center gap-3 text-primary"><span className="h-px w-10 bg-border"/><span className="text-sm leading-none">♡</span><span className="h-px w-10 bg-border"/></div>;
@@ -207,4 +207,4 @@ function RsvpDrawer({ open, onOpenChange, hideToday, setHideToday, pending, onSu
     </form></div></DrawerContent></Drawer>;
 }
 function FieldLabel({ko,en,children}:{ko:string;en:string;children:React.ReactNode}){return <div><p className="mb-2 text-sm font-semibold">{ko} <span className="font-normal opacity-55">{en}</span></p>{children}</div>}
-function Choice({active,onClick,children}:{active:boolean;onClick:()=>void;children:React.ReactNode}){return <Button type="button" variant={active?"default":"outline"} className="h-14 whitespace-normal leading-4 text-primary-foreground" onClick={onClick}>{children}</Button>}
+function Choice({active,onClick,children}:{active:boolean;onClick:()=>void;children:React.ReactNode}){return <Button type="button" variant={active?"default":"outline"} className="h-14 whitespace-normal leading-4 text-primary-foreground [&_small]:text-sm" onClick={onClick}>{children}</Button>}
