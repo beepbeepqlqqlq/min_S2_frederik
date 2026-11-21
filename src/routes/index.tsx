@@ -140,7 +140,7 @@ function WeddingPage() {
         <MiniDivider />
         <DetailBlock title="DINNER" image={dinnerAsset.url} imageAlt="밤하늘을 배경으로 포옹하는 Min과 Frederik" ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
         <MiniDivider />
-        <DetailBlock title="PLEASE RSVP" image={pleaseRsvpAsset.url} imageAlt="체크 무늬 배경에 담긴 Min과 Frederik의 사진 세 장" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
+        <DetailBlock title="PLEASE RSVP" image={pleaseRsvpAsset.url} imageAlt="인사하는 Min과 Frederik의 모습을 담은 사진 세 장" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
       </div>
     </section>
     <StarDivider />
