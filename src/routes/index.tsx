@@ -14,6 +14,10 @@ import { addGuestbookMessage, listGuestbook, submitRsvp } from "@/lib/wedding.fu
 import { supabase } from "@/integrations/supabase/client";
 import heroAsset from "@/assets/hero-2.webp.asset.json";
 import mapAsset from "@/assets/map.png.asset.json";
+import scheduleAsset from "@/assets/schedule-photo.jpg.asset.json";
+import dressCodeAsset from "@/assets/dress-code-photo.jpg.asset.json";
+import dinnerAsset from "@/assets/dinner-photo.jpg.asset.json";
+import pleaseRsvpAsset from "@/assets/please-rsvp-photo.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -112,7 +116,7 @@ function WeddingPage() {
       <div className="mt-10 grid grid-cols-4 gap-2 text-center">
         {[[countdown.days,"일","DAYS"],[countdown.hours,"시간","HRS"],[countdown.minutes,"분","MIN"],[countdown.seconds,"초","SEC"]].map(([value,ko,en]) => <div key={en} className="border-y border-border py-4"><strong className="block text-2xl text-primary tabular-nums">{String(value).padStart(2,"0")}</strong><span className="text-[10px] text-muted-foreground">{ko} · {en}</span></div>)}
       </div>
-      <p className="mt-7 text-center"><span className="font-medium">Min ❦ Frederik의 결혼식이 {countdown.days}일 남았습니다.</span><br/><span className="text-base text-muted-foreground">{countdown.days} days until Min & Frederik’s wedding.</span></p>
+      <p className="mt-7 text-center"><span className="font-medium">Min & Frederik의 결혼식이 {countdown.days}일 남았습니다.</span><br/><span className="text-base text-muted-foreground">{countdown.days} days until Min & Frederik’s wedding.</span></p>
     </section>
     <StarDivider />
 
@@ -130,11 +134,13 @@ function WeddingPage() {
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
       <div className="text-center">
-        <DetailBlock title="PLEASE RSVP" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
+        <DetailBlock title="SCHEDULE" image={scheduleAsset.url} imageAlt="결혼반지를 보여주며 웃는 Min과 Frederik" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party"]} />
         <MiniDivider />
-        <DetailBlock title="SCHEDULE & DRESS CODE" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티","드레스/정장"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party","Cocktail / Formal"]} />
+        <DetailBlock title="DRESS CODE" image={dressCodeAsset.url} imageAlt="하얀 옷을 입은 Min과 Frederik의 손과 결혼반지" ko={["드레스/정장"]} en={["Cocktail / Formal"]} />
         <MiniDivider />
-        <DetailBlock title="DINNER" ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
+        <DetailBlock title="DINNER" image={dinnerAsset.url} imageAlt="밤하늘을 배경으로 포옹하는 Min과 Frederik" ko={["해산물 & 소고기","식이 제한이 있으신 경우 미리 알려주세요."]} en={["Seafood & Beef","Please let us know of any dietary restrictions."]} />
+        <MiniDivider />
+        <DetailBlock title="PLEASE RSVP" image={pleaseRsvpAsset.url} imageAlt="체크 무늬 배경에 담긴 Min과 Frederik의 사진 세 장" ko={["지정석으로 진행됩니다.","예식 2개월 전까지 참석 여부를 알려주세요."]} en={["Assigned seating.","Please RSVP at least two months in advance."]} />
       </div>
     </section>
     <StarDivider />
@@ -172,8 +178,8 @@ function Calendar() {
     <div className="grid grid-cols-7 gap-y-2 text-center text-xs text-muted-foreground">{["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <span key={d}>{d}</span>)}{Array.from({length:5}).map((_,i)=><span key={`blank-${i}`}/>)}{days.map(day => <span key={day} className={`mx-auto flex size-9 items-center justify-center rounded-full ${day === 10 ? "bg-primary font-bold text-primary-foreground shadow" : "text-foreground"}`}>{day}</span>)}</div>
   </div>;
 }
-function DetailBlock({ title, ko, en }: { title: string; ko: string[]; en: string[] }) {
-  return <article className="space-y-4"><h3 className="whitespace-nowrap text-lg font-semibold uppercase leading-tight tracking-[0.1em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
+function DetailBlock({ title, image, imageAlt, ko, en }: { title: string; image: string; imageAlt: string; ko: string[]; en: string[] }) {
+  return <article className="space-y-4"><img src={image} alt={imageAlt} loading="lazy" decoding="async" className="mb-7 w-full"/><h3 className="whitespace-nowrap text-lg font-semibold uppercase leading-tight tracking-[0.1em] text-primary">{title}</h3><p className="whitespace-pre-line text-base leading-7">{ko.join("\n")}</p><p className="whitespace-pre-line text-sm leading-6 text-muted-foreground">{en.join("\n")}</p></article>;
 }
 function MiniDivider() {
   return <div aria-hidden="true" className="my-12 flex items-center justify-center gap-3 text-primary"><span className="h-px w-10 bg-border"/><span className="text-sm leading-none">♡</span><span className="h-px w-10 bg-border"/></div>;
