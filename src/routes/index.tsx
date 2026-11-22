@@ -134,7 +134,7 @@ function WeddingPage() {
     <section className="section-pad">
       <BilingualHeading ko="예식 안내" en="Wedding details" />
       <div className="text-center">
-        <DetailBlock title="SCHEDULE" image={scheduleAsset.url} imageAlt="결혼반지를 보여주며 웃는 Min과 Frederik" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party"]} />
+        <DetailBlock title="SCHEDULE" image={scheduleAsset.url} imageAlt="야경을 배경으로 결혼반지를 보여주며 웃는 Min과 Frederik" ko={["오후 5–8시 · 결혼식","오후 9시– · 애프터 파티"]} en={["5:00–8:00 PM · Wedding","9:00 PM– · After Party"]} />
         <MiniDivider />
         <DetailBlock title="DRESS CODE" image={dressCodeAsset.url} imageAlt="하얀 옷을 입은 Min과 Frederik의 손과 결혼반지" ko={["드레스/정장"]} en={["Cocktail / Formal"]} />
         <MiniDivider />
